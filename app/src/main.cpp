@@ -2,6 +2,10 @@
 #include <zephyr/drivers/sensor.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
+#ifdef CONFIG_MY_DRIVER
+#include <my_drivers/my_driver.h>
+#endif
+
 
 #ifdef CONFIG_MY_DRIVER
 static const struct device *const sensor = DEVICE_DT_GET(DT_NODELABEL(my_sensor));
@@ -22,10 +26,14 @@ int main(void)
     #ifdef CONFIG_MY_DRIVER
     if (!device_is_ready(sensor)) return 0;
 
+    my_driver_set_cnt(sensor, 5); 
+
     bool toggle = 0;
     while (1) {
         if (toggle) {
-            sensor_sample_fetch(sensor);
+            if (sensor_sample_fetch(sensor) < 0) {
+                break;
+            }
         } 
         else {
             sensor_value value;
