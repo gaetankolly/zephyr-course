@@ -1,0 +1,9 @@
+description: Our custom sensor driver binding
+compatible: "my,driver"
+
+properties:
+  led:                  # Reference to one child node of a "gpio-leds" node
+    type: phandle       # Reference to another node
+    required: true      # Build fails if the node doesn't set it
+    description: LED (child of a gpio-leds node) driven by this sensor
+

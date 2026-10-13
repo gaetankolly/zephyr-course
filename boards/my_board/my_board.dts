@@ -23,8 +23,10 @@
 		};
 	};
 
-	aliases {
-		led0 = &green_led_2;
+	my_sensor: my_sensor {
+		compatible = "my,driver";
+		led = <&green_led_2>;
+		status = "okay";            // enables DT_HAS_MY_DRIVER_ENABLED
 	};
 };
 

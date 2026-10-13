@@ -1,0 +1,5 @@
+config MY_DRIVER
+    bool "My custom driver"
+    default y
+    depends on DT_HAS_MY_DRIVER_ENABLED  # only if the dt has an enabled node
+    depends on SENSOR
