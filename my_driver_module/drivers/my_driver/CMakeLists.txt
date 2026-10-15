@@ -1,4 +1,7 @@
 if(CONFIG_MY_DRIVER)
     zephyr_library()
     zephyr_library_sources(my_driver.c)
+    if (CONFIG_SHELL)
+        target_sources(app PRIVATE my_driver_shell.c)
+    endif()
 endif()

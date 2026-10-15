@@ -28,6 +28,7 @@ int main(void)
 
     my_driver_set_cnt(sensor, 5); 
 
+    #ifndef CONFIG_SHELL
     bool toggle = 0;
     while (1) {
         if (toggle) {
@@ -44,6 +45,7 @@ int main(void)
         toggle = !toggle;
         k_msleep(CONFIG_APP_HEARTBEAT_PERIOD_MS);
     }
+    #endif
     #else
     if (!gpio_is_ready_dt(&led)) return 0;
 

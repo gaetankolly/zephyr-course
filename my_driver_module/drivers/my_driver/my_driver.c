@@ -26,6 +26,7 @@ static int my_driver_sample_fetch(const struct device *dev, enum sensor_channel 
     data->cnt--;
     
     if (data->cnt <= 0) {
+        LOG_INF("Count finished");
         return -1;
     }
     else {
@@ -33,9 +34,12 @@ static int my_driver_sample_fetch(const struct device *dev, enum sensor_channel 
     }
 }
 static int my_driver_channel_get(const struct device *dev, enum sensor_channel chan, struct sensor_value *val) {
-    // LOG_INF("Channel get %d", chan);
+    LOG_INF("Channel get %d", chan);
     const struct our_driver_config *cfg = dev->config;
     gpio_pin_set_dt(&cfg->led, 0);
+
+    struct our_driver_data *data = dev->data;
+    val->val1 = data->cnt;
 
     return 0;
 }
