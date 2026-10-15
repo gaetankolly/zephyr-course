@@ -3,3 +3,19 @@ config MY_DRIVER
     default y
     depends on DT_HAS_MY_DRIVER_ENABLED  # only if the dt has an enabled node
     depends on SENSOR
+
+if MY_DRIVER
+
+config MY_DRIVER_CNT_MIN
+    int "Minimum counter value"
+    default 0
+    help
+      Lowest value accepted by my_driver_set_cnt().
+
+config MY_DRIVER_CNT_MAX
+    int "Maximum counter value"
+    default 100
+    help
+      Highest value accepted by my_driver_set_cnt().
+
+endif
