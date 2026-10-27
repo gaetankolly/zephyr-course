@@ -38,6 +38,7 @@ if LED_SUBSYSTEM
 
         config LED_FADE_DURATION
             int "LED fade duration (ms)"
+            range 0 5000
             default 500
 
         menu "Expert setting"
