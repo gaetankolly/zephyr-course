@@ -4,7 +4,7 @@
 
 static int my_board_init(void)
 {
-    printk("Board Initialised\n");
+    printk("Board Initialized\n");
     return 0;
 }
 
